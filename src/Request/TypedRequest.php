@@ -46,6 +46,6 @@ class TypedRequest implements Request
      */
     public function getRequest()
     {
-        return sprintf("%s %s", $this->getType(), $this->getContent());
+        return sprintf("%s :%s", $this->getType(), $this->getContent());
     }
 }

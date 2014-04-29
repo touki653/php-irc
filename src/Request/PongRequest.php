@@ -16,6 +16,6 @@ class PongRequest extends TypedRequest
      */
     public function __construct($ping)
     {
-        parent::__construct('PONG', sprintf(" :%s", $ping));
+        parent::__construct('PONG', $ping);
     }
 }
