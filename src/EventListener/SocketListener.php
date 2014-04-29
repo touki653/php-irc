@@ -37,7 +37,13 @@ class SocketListener
      */
     public function onSocketRead(SocketReadEvent $event, EventDispatcher $dispatcher)
     {
-        $response = $this->factory->build($event->getMessage());
+        try {
+            $response = $this->factory->build($event->getMessage());
+        } catch (\UnexpectedValueException $e) {
+            printf("%s%s", $e->getMessage(), PHP_EOL);
+
+            return;
+        }
 
         if ($response instanceof IrcResponse) {
             $event = new IrcResponseEvent($event->getApplication(), $event->getRequester());

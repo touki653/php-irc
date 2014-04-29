@@ -3,22 +3,22 @@
 namespace Touki\IRC\Request;
 
 /**
- * Pong request
+ * Quit request
  *
  * @author Touki <g.vincendon@vithemis.com>
  */
-class PongRequest extends TypedRequest
+class QuitRequest extends TypedRequest
 {
-    protected $pong;
+    protected $message;
 
     /**
      * Constructor
      *
-     * @param string $pong PING content
+     * @param string $message Quit message
      */
-    public function __construct($pong)
+    public function __construct($message = null)
     {
-        $this->pong = $pong;
+        $this->message = $message;
     }
 
     /**
@@ -26,7 +26,7 @@ class PongRequest extends TypedRequest
      */
     public function getType()
     {
-        return 'PONG';
+        return 'QUIT';
     }
 
     /**
@@ -34,6 +34,6 @@ class PongRequest extends TypedRequest
      */
     public function getContent()
     {
-        return sprintf(" :%s", $this->pong);
+        return $this->message;
     }
 }

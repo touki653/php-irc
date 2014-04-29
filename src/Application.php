@@ -5,6 +5,7 @@ namespace Touki\IRC;
 use Touki\IRC\Event\SocketReadEvent;
 use Touki\IRC\Event\ApplicationEvent;
 use Touki\IRC\Request\RawRequest;
+use Touki\IRC\Request\QuitRequest;
 use Touki\IRC\SocketHandler\BaseSocketHandler;
 
 /**
@@ -67,8 +68,16 @@ class Application
             }
 
             if (false !== $message = $input->read()) {
+                if ('EXIT' === trim($message)) {
+                    $requester->send(new QuitRequest('http://github.com/touki653/php-irc'));
+
+                    break;
+                }
+
                 $requester->send(new RawRequest($message));
             }
+
+            usleep(100);
         }
     }
 }

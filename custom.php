@@ -32,7 +32,7 @@ $app->on('response.irc', array($pingListener, 'onIrcResponse'));
 $app->on('response.message', function (MessageResponseEvent $event, EventDispatcher $dispatcher) {
     $message = $event->getResponse();
 
-    echo sprintf("[%s] - %s: %s%s", $message->getType(), $message->getFrom()->getNickname(), $message->getContent(), PHP_EOL);
+    echo sprintf("<<< [%s] - %s: %s%s", $message->getType(), $message->getFrom()->getNickname(), $message->getContent(), PHP_EOL);
 });
 
 $app->run('irc.onlinegamesnet.net', 6667);
