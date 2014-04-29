@@ -9,8 +9,6 @@ namespace Touki\IRC\Request;
  */
 class QuitRequest extends TypedRequest
 {
-    protected $message;
-
     /**
      * Constructor
      *
@@ -18,22 +16,6 @@ class QuitRequest extends TypedRequest
      */
     public function __construct($message = null)
     {
-        $this->message = $message;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getType()
-    {
-        return 'QUIT';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getContent()
-    {
-        return $this->message;
+        parent::__construct('QUIT', $message);
     }
 }
